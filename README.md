@@ -1,4 +1,4 @@
-# To-Do-Web-Application
+# To-Do-List-Web-Application
 
 Features:
 
@@ -6,6 +6,7 @@ Features:
 - The user can create a new task for themselves.
 - The user can set a priority level for their tasks.
 - The tasks will be ordered based on their priority.
+- The user may mark a task as 'done', therefore moving it to a 'Completed Tasks' list
 
 These are the basic features that I have in mind at the moment. I recognize the need for more SQL tables, so more features need to be added.
 
