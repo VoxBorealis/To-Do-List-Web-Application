@@ -4,3 +4,10 @@ CREATE TABLE users (
     password TEXT
 );
 
+CREATE TABLE tasks (
+    id SERIAL PRIMARY KEY,
+    creator_id INTEGER REFERENCES users,
+    task TEXT,
+    made_at TIMESTAMP,
+    done BOOLEAN
+);
