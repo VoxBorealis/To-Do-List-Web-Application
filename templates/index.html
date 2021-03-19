@@ -9,6 +9,13 @@
       <p>
         {% if session.user_id %}
         <p>Welcome back, {{ session.username }}</p>
+        <form>
+          <div class="form-group">
+            <label for="newTask">Create a new task</label>
+            <input type="text" class="form-control" id="newTask" name="newTask">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
         <a href="/logout">Log Out</a>
         {% else %}
         A quick and easy way to keep track of your tasks.
