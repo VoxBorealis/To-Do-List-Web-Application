@@ -1,6 +1,7 @@
 from app import app
 from flask import redirect, render_template, request, session
 import users
+import tasks
 
 @app.route("/", methods=["GET","POST"])
 def index():
@@ -18,6 +19,15 @@ def login():
 @app.route("/logout")
 def logout():
     users.logout()
+    return redirect("/")
+
+@app.route("/new_task", methods=["GET", "POST"])
+def new_task():
+    print("tultiin routes -> new task metodiin")
+    task = request.form["new_task"]
+    priority = request.form["priority"]
+    print(task, priority)
+    tasks.new_task(users.user_id(), task, priority)
     return redirect("/")
 
 @app.route("/register", methods=["GET","POST"])
