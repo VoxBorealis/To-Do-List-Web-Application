@@ -12,4 +12,8 @@ def new_task(creator_id, task, priority):
         print("virhe sql:ssä taskia luodessa")
         return False
     return True
+
+def get_all_tasks():
+    sql = "SELECT id, task, creator_id FROM tasks ORDER BY priority"
+    return db.session.execute(sql).fetchall()
     

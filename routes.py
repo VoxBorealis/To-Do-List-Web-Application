@@ -5,7 +5,7 @@ import tasks
 
 @app.route("/", methods=["GET","POST"])
 def index():
-    return render_template("index.html")
+    return render_template("index.html", tasks=tasks.get_all_tasks())
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
