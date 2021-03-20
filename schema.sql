@@ -17,5 +17,6 @@ CREATE TABLE comments (
     id SERIAL PRIMARY KEY,
     creator_id INTEGER REFERENCES users,
     task_id INTEGER REFERENCES tasks,
-    comment TEXT
+    comment TEXT,
+    visible BOOLEAN
 );

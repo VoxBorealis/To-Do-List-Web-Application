@@ -5,7 +5,7 @@
 <div class="container">
   <div class="row">
     <div class="col-8">
-      <h1>To-Do-List</h1>
+      <h1> To-Do-List</h1>
       <p>
         {% if session.user_id %}
         <p>Welcome back, {{ session.username }}</p>
@@ -44,7 +44,7 @@
 
             <!--Choose prio-->
           </div>
-          
+          <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
         </form>
 
         <ul>
@@ -55,7 +55,7 @@
                   <h5 class="mb-1">{{ task[0] }}</h5>
                   <small>{{ task[2] }}</small>
                 </div>
-                <p class="mb-1">Click to set a description</p>
+                <p class="mb-1">{{ task[4] }}</p>
                 <small>Prio: {{ task[1] }}</small>
               </a>
             </div>

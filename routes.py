@@ -6,7 +6,7 @@ import tasks
 @app.route("/", methods=["GET","POST"])
 def index():
     print(users.user_id())
-    return render_template("index.html", tasks=tasks.get_my_tasks(users.user_id()))
+    return render_template("index.html", tasks=tasks.get_my_tasks_with_comment(users.user_id()))
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -29,24 +29,17 @@ def done():
 @app.route("/new_task", methods=["GET", "POST"])
 def new_task():
     print("tultiin routes -> new task metodiin")
+    users.check_csrf()
     task = request.form["new_task"]
     priority = request.form["priority"]
     print(task, priority)
     tasks.new_task(users.user_id(), task, priority)
     return redirect("/")
 
-#@app.route("/new_comment", methods=["GET", "POST"])
-#def new_comment():
-#    print("Tultiin routes -> new_comment metodiin")
-#    comment = request.form["new_comment"]
-#    print(comment)
-#    task_id = request.data["id"]
-#    print(task_id)
-    
-#   tasks.new_comment(users.user_id(), task_id, comment)
-
 @app.route("/tasks/<int:id>", methods=["GET","POST"])
 def task(id):
+    #users.check_csrf()
+    users.check_user(tasks.get_task_info(id)[1], users.user_id())
     if request.method == "GET":
         return render_template("task.html", id=id, creator_id=tasks.get_task_info(id)[1], task=tasks.get_task_info(id)[2],
         priority=tasks.get_task_info(id)[3], time=tasks.get_task_info(id)[4], done=tasks.get_task_info(id)[5], comment=tasks.get_comment(id))
