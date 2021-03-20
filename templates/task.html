@@ -16,6 +16,18 @@
         <p> prio: {{ priority }}
         <p> time: {{ time }} 
         <p> done: {{ done }}
+        <p> comment: {{ comment }}
+
+          <form action="/tasks/{{id}}" method="POST">
+            <div class="form-group">
+              <label for="new_comment">Leave a comment</label>
+              <input type="text" name="new_comment" class="form-control" id="username">
+              <data type="text" name="id" value=id> 
+              <small id="emailHelp" class="form-text text-muted">Description</small>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Comment</button>
+          </form>
 
         <form action="/tasks/{{id}}" method="POST">
             <button type="submit" class="btn btn-primary">Task Done!</button>
