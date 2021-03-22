@@ -1,22 +1,22 @@
-<!doctype html>
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<title>What To Do!?</title>
-<div class="container">
-  <div class="row">
-    <div class="col-8">
-      <h1> <a href="/">To-Do-List</a></h1>
-        A quick and easy way to keep track of your tasks.
+{% extends "layout.html" %}
+{% block content %}
+
       <p>
         <p>
-        hejssan!
-        <p> id: {{ id }}
-        <p> creator: {{ creator_id }} 
-        <p> task: {{ task }}
-        <p> prio: {{ priority }}
-        <p> time: {{ time }} 
-        <p> done: {{ done }}
-        <p> comment: {{ comment }}
+        Task Editing
+
+        <hr>
+
+        <div class="list-group">
+          <a class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">{{ task }}</h5>
+              <small>{{ time }}</small>
+            </div>
+            <p class="mb-1">{{ comment[0] }}</p>
+            <small>Prio: {{ priority }}</small>
+          </a>
+        </div>
 
           <form action="/tasks/{{id}}" method="POST">
             <div class="form-group">
@@ -28,7 +28,7 @@
             
             <button type="submit" class="btn btn-primary">Comment</button>
           </form>
-
+          <hr>
         <form action="/tasks/{{id}}" method="POST">
             <button type="submit" class="btn btn-primary">Task Done!</button>
         </form>
@@ -38,6 +38,12 @@
       <h2>Did you know?</h2>
       <p>
         Vestibulum at consectetur mi, vel ultrices leo. Nam rhoncus viverra velit, sed pretium tortor ultricies a. In ullamcorper metus sem, vel porttitor erat volutpat euismod. Nulla facilisi. Nam facilisis, odio quis condimentum fringilla, risus eros vehicula leo, a malesuada odio ante sit amet mauris. Praesent accumsan massa ut lorem pulvinar, non luctus erat laoreet. Etiam pulvinar libero at sapien lacinia, et vulputate nunc semper. Maecenas lobortis diam eu neque ultricies tempor. Vivamus efficitur eros ut feugiat fermentum. Quisque orci magna, commodo eget erat eu, tincidunt hendrerit nisl. 
+        <p>
+          {% if session.user_id %}
+        <a href="/completed" class="btn-secondary btn-lg active" role="button" aria-pressed="true">View Completed Tasks</a>
+          {% endif %}
+    </div>
     </div>
   </div>
 </div>
+{% endblock %}

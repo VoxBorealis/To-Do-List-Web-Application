@@ -22,9 +22,10 @@ def logout():
     users.logout()
     return redirect("/")
 
-@app.route("/done")
-def done():
-    print("done!")
+@app.route("/completed")
+def completed():
+    print("completed")
+    return render_template("completed.html", tasks=tasks.get_my_completed_tasks(users.user_id()))
 
 @app.route("/new_task", methods=["GET", "POST"])
 def new_task():
@@ -33,8 +34,11 @@ def new_task():
     task = request.form["new_task"]
     priority = request.form["priority"]
     print(task, priority)
-    tasks.new_task(users.user_id(), task, priority)
-    return redirect("/")
+    
+    if tasks.new_task(users.user_id(), task, priority):
+        return redirect("/")
+    else:
+        return render_template("error.html", message="while creating the task. Make sure it didn't exceed 50 characters or that it wasn't empty")
 
 @app.route("/tasks/<int:id>", methods=["GET","POST"])
 def task(id):
@@ -52,8 +56,9 @@ def task(id):
             comment = request.form["new_comment"]
             print(comment)
             print(id)
-            tasks.new_comment(users.user_id(), id, comment)
-            return redirect("/")
+            if tasks.new_comment(users.user_id(), id, comment):
+                return redirect("/")
+            else: return render_template("error.html", message="Comments can't exceed 500 characters.")
         except:
             print("meni exceptiin")
             tasks.task_done(id, users.user_id())
@@ -66,8 +71,9 @@ def register():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
+        
         if users.register(username, password):
             return redirect("/")
         else:
-            return render_template("error.html", message="There was an error while creating your account.")
+            return render_template("error.html", message="Make sure your username did not exceed 20 characters.")
     
