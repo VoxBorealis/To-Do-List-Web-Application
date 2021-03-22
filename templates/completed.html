@@ -1,24 +1,48 @@
 {% extends "layout.html" %}
 {% block content %}
-<hr>
 
-<h4>Well done, here are the tasks that you've completed so far!</h4>
-<hr>
-<ul>
-    {% for task in tasks %}
-      <div class="list-group">
-        <a class="list-group-item list-group-item-action">
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">{{ task[0] }}</h5>
-            <small>{{ task[2] }}</small>
-          </div>
-          <p class="mb-1">{{ task[4] }}</p>
-          <small>Prio: {{ task[1] }}</small>
-        </a>
-      </div>
+      <p>
+      These are the tasks that you've completed!
+      <hr>
+        
+        <ul>
+          {% for task in tasks %}
+            <div class="list-group">
+              <a class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">{{ task[0] }}</h5>
+                  <small>{{ task[2] }}</small>
+                </div>
+                <p class="mb-1">{{ task[4] }}</p>
+                <small>Prio: {{ task[1] }}</small>
+              </a>
+            </div>
+        
+            {% endfor %}
+        </ul>
+        
+       
+    </div>
+    <div class="col-4">
+      <h2>Did you know?</h2>
+      <p>
+        Vestibulum at consectetur mi, vel ultrices leo. Nam rhoncus viverra velit, sed pretium tortor ultricies a. In ullamcorper metus sem, vel porttitor erat volutpat euismod. Nulla facilisi. Nam facilisis, odio quis condimentum fringilla, risus eros vehicula leo, a malesuada odio ante sit amet mauris. Praesent accumsan massa ut lorem pulvinar, non luctus erat laoreet. Etiam pulvinar libero at sapien lacinia, et vulputate nunc semper. Maecenas lobortis diam eu neque ultricies tempor. Vivamus efficitur eros ut feugiat fermentum. Quisque orci magna, commodo eget erat eu, tincidunt hendrerit nisl.
+        <p>
+          <hr>
+          {% if session.user_id %}
+        <a href="/completed" class="btn-secondary btn-lg active" role="button" aria-pressed="true">View Completed Tasks</a>
+          {% endif %}
+          <hr>
+          <a href="https://github.com/VoxBorealis/To-Do-List-Web-Application">GitHub</a>
+          <hr>
+        <a href="/logout">Log Out</a>
 
-      {% endfor %}
-  </ul>
 
-
+    </div>
+  </div>
+</div>
 {% endblock %}
+
+
+
+

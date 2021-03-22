@@ -70,10 +70,14 @@ def register():
         return render_template("register.html")
     if request.method == "POST":
         username = request.form["username"]
+        if len(username) < 1 or len(username) > 20:
+            return render_template("error.html", message="Your username must be 1-20 characters long")
         password = request.form["password"]
-        
+        password2 = request.form["password2"]
+        if password != password2: return render_template("error.html", message="The passwords did not match")
+        if password == "":return render_template("error.html", message="Empty password")
         if users.register(username, password):
             return redirect("/")
         else:
-            return render_template("error.html", message="Make sure your username did not exceed 20 characters.")
+            return render_template("error.html", message="Account creation failed")
     

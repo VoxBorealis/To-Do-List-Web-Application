@@ -29,7 +29,6 @@ def logout():
     del session["username"]
 
 def register(username, password):
-    if len(username) > 20 or len(password) > 100: return False
     hash_value = generate_password_hash(password)
     try:
         sql = "INSERT INTO users (username, password) VALUES (:username,:password)"

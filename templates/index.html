@@ -34,6 +34,9 @@
                 </div>
               </div>
             </fieldset>
+            <p>
+            <hr>
+
             <button type="submit" class="btn btn-primary">Submit</button>
             
             <!--Choose prio-->
@@ -42,6 +45,7 @@
         </form>
         <div class="col-sm-10">
         </div>
+        
         <ul>
           {% for task in tasks %}
             <div class="list-group">
@@ -59,7 +63,6 @@
         </ul>
 
         
-        <a href="/logout">Log Out</a>
         {% else %}
         A quick and easy way to keep track of your tasks.
       <p>
@@ -85,9 +88,16 @@
       <p>
         Vestibulum at consectetur mi, vel ultrices leo. Nam rhoncus viverra velit, sed pretium tortor ultricies a. In ullamcorper metus sem, vel porttitor erat volutpat euismod. Nulla facilisi. Nam facilisis, odio quis condimentum fringilla, risus eros vehicula leo, a malesuada odio ante sit amet mauris. Praesent accumsan massa ut lorem pulvinar, non luctus erat laoreet. Etiam pulvinar libero at sapien lacinia, et vulputate nunc semper. Maecenas lobortis diam eu neque ultricies tempor. Vivamus efficitur eros ut feugiat fermentum. Quisque orci magna, commodo eget erat eu, tincidunt hendrerit nisl.
         <p>
+          <hr>
           {% if session.user_id %}
         <a href="/completed" class="btn-secondary btn-lg active" role="button" aria-pressed="true">View Completed Tasks</a>
           {% endif %}
+          <hr>
+          <a href="https://github.com/VoxBorealis/To-Do-List-Web-Application">GitHub</a>
+          <hr>
+        <a href="/logout">Log Out</a>
+
+
     </div>
   </div>
 </div>
