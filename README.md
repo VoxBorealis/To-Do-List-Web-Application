@@ -1,5 +1,7 @@
 # To-Do-List-Web-Application
 
+[Link to Heroku] (https://to-do-list-web-application.herokuapp.com/)
+
 Features:
 
 - The user can create a new account and log in/out.
@@ -19,6 +21,3 @@ Some ideas for more features:
 - User roles..?(Although I'm not sure how useful those would be in this app)
 - Group tasks
 
-TODO!
-
-- Improve the overall look and design of the UI.
