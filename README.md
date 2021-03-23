@@ -1,6 +1,7 @@
 # To-Do-List-Web-Application
 
-[Link to Heroku] (https://to-do-list-web-application.herokuapp.com/)
+[Link to Heroku]
+(https://to-do-list-web-application.herokuapp.com/)
 
 Features:
 
