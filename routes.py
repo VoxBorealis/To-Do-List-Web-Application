@@ -19,7 +19,8 @@ def login():
         if users.login(username,password):
             return redirect("/")
         else:
-            return render_template("error.html",message="Invalid username or password.")
+            return render_template("index.html",form = form, error ="Invalid username or password")
+            #return render_template("error.html",message="Invalid username or password.")
     return render_template("index.html", form = form)
 
 @app.route("/logout")
