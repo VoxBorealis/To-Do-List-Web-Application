@@ -4,46 +4,26 @@
         {% if session.user_id %}
         <p>Welcome back, {{ session.username }}</p>
         <form action="/new_task" method="POST">
+          {{ task_form.csrf_token }}
           <div class="form-group">
-            <label for="new_task">Create a new task</label>
-            <input type="text" class="form-control" id="new_task" name="new_task">
-            <!--Choose prio-->
-            <fieldset class="form-group">
-              <div class="row">
-                <legend class="col-form-label col-sm-2 pt-0">Priority</legend>
-                <div class="col-sm-10">
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="priority" id="gridRadios1" value="1" checked>
-                    <label class="form-check-label" for="gridRadios1">
-                      High
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="priority" id="gridRadios2" value="2">
-                    <label class="form-check-label" for="gridRadios2">
-                      Medium
-                    </label>
 
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="priority" id="gridRadios3" value="3">
-                    <label class="form-check-label" for="gridRadios3">
-                      Low
-                    </label>
-                  </div>
+                {{ task_form.task.label(class='form-control-label') }}
+
+                {% if task_form.task.errors %}
+                {{ task_form.task(class='form-control form-control is-invalid') }}
+                <div class='invalid-feedback'>
+                    {% for error in task_form.task.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
                 </div>
-              </div>
-            </fieldset>
-            <p>
-            <hr>
-
-            <button type="submit" class="btn btn-primary">Submit</button>
-            
-            <!--Choose prio-->
-          </div>
-          <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-        </form>
-        <div class="col-sm-10">
+                {% else %}
+                {{ task_form.task(class='form-control form-control-') }}
+                {% endif %}
+                Priority
+                {{ task_form.priority(class='form-control form-control') }}
+                <hr>
+                {{ task_form.submit(class="btn btn-primary") }}
+                <hr>
         </div>
         
         <ul>
@@ -68,19 +48,41 @@
       <p>
         Start by logging in!
         <form action="/login" method="POST">
+            {{ form.csrf_token }}
             <div class="form-group">
-              <label for="username">Username</label>
-              <input type="text" name="username" class="form-control" id="username">
-              <small id="emailHelp" class="form-text text-muted"></small>
+              {{ form.username.label(class='form-control-label') }}
+
+                {% if form.username.errors %}
+                {{ form.username(class='form-control form-control is-invalid') }}
+                <div class='invalid-feedback'>
+                    {% for error in form.username.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.username(class='form-control form-control-') }}
+                {% endif %}
             </div>
             <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" name="password" class="form-control" id="password">
+                {{ form.password.label(class='form-control-label') }}
+
+                {% if form.password.errors %}
+                {{ form.password(class='form-control form-control- is-invalid') }}
+                <div class='invalid-feedback'>
+                    {% for error in form.password.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.password(class='form-control form-control') }}
+                {% endif %}
             </div>
-            
-            <button type="submit" class="btn btn-primary">Log In</button>
+            {{ form.submit(class="btn btn-primary") }}
           </form>
-          <a href="/register">Click here to register!</a>
+          <hr>
+          <medium class="text-muted">
+              <a href="/register">Click here to register!</a>
+          </medium>
           {% endif %}
     </div>
     <div class="col-4">
@@ -88,14 +90,15 @@
       <p>
         Vestibulum at consectetur mi, vel ultrices leo. Nam rhoncus viverra velit, sed pretium tortor ultricies a. In ullamcorper metus sem, vel porttitor erat volutpat euismod. Nulla facilisi. Nam facilisis, odio quis condimentum fringilla, risus eros vehicula leo, a malesuada odio ante sit amet mauris. Praesent accumsan massa ut lorem pulvinar, non luctus erat laoreet. Etiam pulvinar libero at sapien lacinia, et vulputate nunc semper. Maecenas lobortis diam eu neque ultricies tempor. Vivamus efficitur eros ut feugiat fermentum. Quisque orci magna, commodo eget erat eu, tincidunt hendrerit nisl.
         <p>
-          <hr>
           {% if session.user_id %}
+        <hr>
         <a href="/completed" class="btn-secondary btn-lg active" role="button" aria-pressed="true">View Completed Tasks</a>
+        <hr>
+        <a href="/logout">Log Out</a>
           {% endif %}
           <hr>
           <a href="https://github.com/VoxBorealis/To-Do-List-Web-Application">GitHub</a>
           <hr>
-        <a href="/logout">Log Out</a>
 
 
     </div>

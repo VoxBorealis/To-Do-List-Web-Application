@@ -5,7 +5,6 @@ from flask import session
 #Fetches the id of the task we created ->
 #Creates a default comment for the task
 def new_task(creator_id, task, priority):
-    print(creator_id, task, priority)
     if len(task) > 50:return False
     if len(task) == 0:return False
     try:
@@ -17,7 +16,6 @@ def new_task(creator_id, task, priority):
         task_id_from_sql = (db.session.execute(hae_id_sql, {"creator_id":creator_id}).fetchone())
         new_comment(creator_id, task_id_from_sql[0], "Click to set a comment")
     except:
-        print("virhe sql:ssä taskia luodessa")
         return False
     return True
 

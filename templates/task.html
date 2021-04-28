@@ -19,17 +19,29 @@
         </div>
 
           <form action="/tasks/{{id}}" method="POST">
+            {{ form.csrf_token }}
+            <input type="hidden" name="done" value="no">
             <div class="form-group">
-              <label for="new_comment">Leave a comment</label>
-              <input type="text" name="new_comment" class="form-control" id="username">
-              <data type="text" name="id" value=id> 
-              <small id="emailHelp" class="form-text text-muted">Description</small>
-            </div>
-            
-            <button type="submit" class="btn btn-primary">Comment</button>
+              {{ form.comment.label(class='form-control-label') }}
+
+                {% if form.comment.errors %}
+                {{ form.comment(class='form-control form-control is-invalid') }}
+                <div class='invalid-feedback'>
+                    {% for error in form.comment.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.comment(class='form-control form-control-') }}
+                {% endif %}
+              </div>
+            {{ form.submit(class="btn btn-primary") }}
+
           </form>
           <hr>
+
         <form action="/tasks/{{id}}" method="POST">
+            <input type="hidden" name="done" value="yes">
             <button type="submit" class="btn btn-primary">Task Done!</button>
         </form>
 

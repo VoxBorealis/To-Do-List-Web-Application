@@ -5,28 +5,61 @@
 <div class="container">
   <div class="row">
     <div class="col-8">
-      <h1>To-Do-List</h1>
+      <h1> <a href="/">To-Do-List</a></h1>
         A quick and easy way to keep track of your tasks.
       <p>
         <p>
-        <h2>Create a new account</h2>
-        <form action="/register" method="POST">
+        <h3>Register</h3>
+        <form action="" method="POST">
+            {{ form.csrf_token }}
             <div class="form-group">
-              <label for="username">Username</label>
-              <input type="text" name="username" class="form-control" id="username">
-              <small id="emailHelp" class="form-text text-muted">You must choose a unique username</small>
+              {{ form.username.label(class='form-control-label') }}
+
+                {% if form.username.errors %}
+                {{ form.username(class='form-control form-control is-invalid') }}
+                <div class='invalid-feedback'>
+                    {% for error in form.username.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.username(class='form-control form-control-') }}
+                {% endif %}
             </div>
             <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" name="password" class="form-control" id="password">
+              {{ form.password.label(class='form-control-label') }}
+
+                {% if form.password.errors %}
+                {{ form.password(class='form-control form-control- is-invalid') }}
+                <div class='invalid-feedback'>
+                    {% for error in form.password.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.password(class='form-control form-control') }}
+                {% endif %}
             </div>
             <div class="form-group">
-              <label for="password">Confirm password</label>
-              <input type="password" name="password2" class="form-control" id="password2">
+              {{ form.password_confirm.label(class='form-control-label') }}
+
+                {% if form.password_confirm.errors %}
+                {{ form.password_confirm(class='form-control form-control is-invalid') }}
+                <div class='invalid-feedback'>
+                    {% for error in form.password_confirm.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.password_confirm(class='form-control form-control') }}
+                {% endif %}
             </div>
-            <button type="submit" class="btn btn-primary">Sign up!</button>
-            <p>
-            Already have an account? <a href="/">Log In</a>
+            {{ form.submit(class="btn btn-primary") }}
+
+            <hr>
+            <medium class="text-muted">
+                Already have an account? <a href="/">Log In</a>
+            </medium>
           </form>
     </div>
     <div class="col-4">
