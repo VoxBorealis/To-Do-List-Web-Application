@@ -1,0 +1,107 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<hr>
+You are currently working on,
+<h2>{{ project[2] }}</h2>
+<p>Tasks you create here are shared with your group</p>
+<hr>
+<form action="/new_project_task" method="POST">
+    {{ form.csrf_token }}
+    <div class="form-group">
+          {{ form.task.label(class='form-control-label') }}
+          {% if form.task.errors %}
+          {{ form.task(class='form-control form-control is-invalid') }}
+          <div class='invalid-feedback'>
+              {% for error in form.task.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+          </div>
+          {% else %}
+          {{ form.task(class='form-control form-control-') }}
+          {% endif %}
+          Priority
+          {{ form.priority(class='form-control form-control') }}
+          <hr>
+          <input type="hidden" name="id" value="{{ project[0] }}">
+          {{ form.submit(class="btn btn-primary") }}
+          <hr>
+    </div>
+</form>
+  <ul>
+    {% for task in tasks %}
+      <div class="list-group">
+        <a href="/projects/{{ id }}/{{ task[0] }}" class="list-group-item list-group-item-action">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ task[1] }}</h5>
+            <small>{{ task[3] }}</small>
+          </div>
+          <p class="mb-1">Click to see the comments!{{ task[4] }}</p>
+          <small>Prio: {{ task[2] }}</small>
+        </a>
+      </div>
+
+      {% endfor %}
+  </ul>
+  <hr>
+
+
+
+</div>
+<div class="col-4">
+  <hr>
+  <h5>Users working on this project</h5>
+  <hr>
+  <ul>
+    {% for member in members %}
+      <p> {{ member }}</p>
+    {% endfor %}
+  </ul>
+
+    <hr>
+
+      {% if session.user_id %}
+      <form action="/projects/{{project[0]}}" method="POST">
+        {{ form.csrf_token }}
+        <div class="form-group">
+              {{ invite_form.username.label(class='form-control-label') }}
+              {% if invite_form.username.errors %}
+              {{ invite_form.username(class='form-control form-control is-invalid') }}
+              <div class='invalid-feedback'>
+                  {% for error in invite_form.username.errors %}
+                  <span>{{ error }}</span>
+                  {% endfor %}
+              </div>
+              {% else %}
+              {{ invite_form.username(class='form-control form-control-') }}
+              {% endif %}
+              <p></p>
+              <input type="hidden" name="id" value="{{ project[0] }}">
+              {{ form.submit(class="btn btn-primary") }}
+              <p style="color: tomato;">{{ error }}</p>
+
+        </div>
+      </form>
+      <hr>
+    <a href="/projects" class="btn-secondary btn-lg active" role="button" aria-pressed="true">Return to projects</a>
+      {% endif %}
+      <hr>
+    <a href="https://github.com/VoxBorealis/To-Do-List-Web-Application">GitHub</a>
+    <hr>
+  <hr>
+
+<form action="/new_project_task" method="POST">
+    <input type="hidden" name="id" value="{{ project[0] }}">
+    <input type="hidden" name="done" value="yes">
+    <button type="submit" class="btn-secondary btn-md active" aria-pressed="true">Delete Project</button>
+</form>
+<medium class="text-muted">
+    Only the owner can delete this project.
+</medium>
+
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}

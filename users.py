@@ -35,6 +35,25 @@ def register(username, password):
 def user_id():
     return session.get("user_id",0)
 
+def get_user_id_from_username(username):
+    try:
+        sql = "SELECT id FROM users WHERE username = :username"
+        return_id = db.session.execute(sql, {"username":username}).fetchone()
+    except:
+        return False
+    if return_id != None:
+        return return_id[0]
+
+
+def get_username_from_id(id):
+    try:
+        sql = "SELECT username FROM users WHERE id = :id"
+        username = db.session.execute(sql, {"id":id}).fetchone()
+    except:
+        return False
+    if username != None:
+        return username[0]
+
 def check_user(creator_id, user_id):
     if creator_id != user_id:
         abort(403)

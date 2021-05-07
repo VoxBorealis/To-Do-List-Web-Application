@@ -3,11 +3,31 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <title>What To Do!?</title>
 
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">To-Do-List</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/projects">Projects <span class="sr-only">(current)</span></a>
+      </li>
+      
+    </ul>
+    {% if session.user_id %}
+    <a href="/logout" class="btn btn-outline-success my-2 my-sm-0" role="button" >Log out, {{ session.username }}</a>
+    {% endif %}
+    
+    
+  </div>
+</nav>
+
 <div class="container" >
   <div class="row">
     <div class="col-8">
       
-      <h1> <a href="/">To-Do-List</a></h1>
 
   
 {% block content %}{% endblock %}

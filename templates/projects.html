@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<hr>
+<p>Here you can create projects that contain tasks for your group!</p>
+<p>Start by creating a project or click on a pre-existing project.</p>
+
+<form action="/new_project" method="POST">
+    {{ form.csrf_token }}
+    <div class="form-group">
+
+          {{ form.project.label(class='form-control-label') }}
+
+          {% if form.project.errors %}
+          {{ form.project(class='form-control form-control is-invalid') }}
+          <div class='invalid-feedback'>
+              {% for error in form.project.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+          </div>
+          {% else %}
+          {{ form.project(class='form-control form-control-') }}
+          {% endif %}
+          <hr>
+          {{ form.submit(class="btn btn-primary") }}
+          <hr>
+  </div>
+  <p style="text-align: center;">Projects you are a member of</p>
+  <ul>
+    {% for project in projects %}
+      <div class="list-group">
+        <a href="/projects/{{ project[2] }}" class="list-group-item list-group-item-action active btn-light">
+          <div class="d-flex w-100 justify-content-between" style="align-items: center;">
+            <h5 class="mb-1" style="text-align: right;">{{ project[0] }}</h5>
+            <small>{{ project[1] }}</small>
+          </div>
+          <hr>
+        </a>
+      </div>
+
+      {% endfor %}
+  </ul>
+
+</div>
+<div class="col-4">
+  <h2>Did you know?</h2>
+  <p>
+    Vestibulum at consectetur mi, vel ultrices leo. Nam rhoncus viverra velit, sed pretium tortor ultricies a. In ullamcorper metus sem, vel porttitor erat volutpat euismod. Nulla facilisi. Nam facilisis, odio quis condimentum fringilla, risus eros vehicula leo, a malesuada odio ante sit amet mauris. Praesent accumsan massa ut lorem pulvinar, non luctus erat laoreet. Etiam pulvinar libero at sapien lacinia, et vulputate nunc semper. Maecenas lobortis diam eu neque ultricies tempor. Vivamus efficitur eros ut feugiat fermentum. Quisque orci magna, commodo eget erat eu, tincidunt hendrerit nisl. 
+    <p>
+      {% if session.user_id %}
+    <a href="/" class="btn-secondary btn-lg active" role="button" aria-pressed="true">Return to Personal Tasks</a>
+      {% endif %}
+      <hr>
+    <a href="https://github.com/VoxBorealis/To-Do-List-Web-Application">GitHub</a>
+    <hr>
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}

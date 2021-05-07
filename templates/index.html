@@ -1,8 +1,10 @@
 {% extends "layout.html" %}
 {% block content %}
+<hr>
       <p>
         {% if session.user_id %}
-        <p>Welcome back, {{ session.username }}</p>
+        <p>Welcome back, <b>{{ session.username }}</b></p>
+        <p>You are working on personal tasks</p>
         <form action="/new_task" method="POST">
           {{ task_form.csrf_token }}
           <div class="form-group">
@@ -94,8 +96,6 @@
           {% if session.user_id %}
         <hr>
         <a href="/completed" class="btn-secondary btn-lg active" role="button" aria-pressed="true">View Completed Tasks</a>
-        <hr>
-        <a href="/logout">Log Out</a>
           {% endif %}
           <hr>
           <a href="https://github.com/VoxBorealis/To-Do-List-Web-Application">GitHub</a>

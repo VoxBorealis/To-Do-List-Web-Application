@@ -21,3 +21,11 @@ class TaskForm(FlaskForm):
 class TaskComment(FlaskForm):
     comment = StringField('Leave a comment', validators=[DataRequired(), Length(min=1, max=500)])
     submit = SubmitField('Comment')
+
+class ProjectForm(FlaskForm):
+    project = StringField('Create a new project', validators=[DataRequired(), Length(min=1, max=50)])
+    submit = SubmitField('Submit')
+
+class InviteForm(FlaskForm):
+    username = StringField('Invite a new user to this project', validators=[DataRequired(), Length(min=3, max=36)])
+    submit = SubmitField('Invite')
