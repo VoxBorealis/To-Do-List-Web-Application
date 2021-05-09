@@ -47,13 +47,12 @@ def get_project_members(project_id):
 
 def new_project_task_comment(creator_id, task_id, comment):
     if len(comment) > 500:return False
-    creator_username = users.get_username_from_id(creator_id)
     try:
         sql = "INSERT INTO project_task_comments " \
-            "(project_task_id, creator_id, comment, made_at, visible, creator_username)" \
-            " VALUES (:project_task_id, :creator_id, :comment, NOW(), TRUE, :creator_username)"
+            "(project_task_id, creator_id, comment, made_at, visible)" \
+            " VALUES (:project_task_id, :creator_id, :comment, NOW(), TRUE)"
         db.session.execute(sql, {"project_task_id":task_id, "creator_id":creator_id,
-                         "comment":comment, "creator_username":creator_username})
+                         "comment":comment})
         db.session.commit()
     except:
         return False
