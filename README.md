@@ -1,6 +1,6 @@
 # To-Do-List-Web-Application
 
-[Link to Heroku](https://to-do-list-web-application.herokuapp.com/)
+[Link to Heroku](https://to-do-list-web-app-py.herokuapp.com/)
 
 An app made for keeping track of your tasks!
 
