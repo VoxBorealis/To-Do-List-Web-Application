@@ -20,9 +20,7 @@ def new_task(creator_id, task, priority):
         return False
     return True
 
-#Sets the 'visible' status on the pres_with_comment(user_id):
-    sql = "SELECT T.task, T.priority, T.made_at, T.id, C.comment FROM tasks AS T, " \
-          vious comment as FALSE
+#Sets the 'visible' status on the previous comment as FALSE
 #and then creates a new comment
 def new_comment(creator_id, task_id, comment):
     if len(comment) > 500:return False

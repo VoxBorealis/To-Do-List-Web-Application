@@ -5,7 +5,7 @@ from flask import session, abort
 import users
 
 def new_project(creator_id, project):
-    if len(project) < 3: return False
+    if len(project) < 1: return False
     if len(project) > 50: return False
     try:
         sql = "INSERT INTO projects (creator_id, project, made_at, done) VALUES (:creator_id, :project, NOW(), FALSE)"
