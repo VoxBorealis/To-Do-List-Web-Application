@@ -19,4 +19,3 @@ Features:
     - Users can invite people to the project
     - Users can create tasks inside the project that everyone involved can interact with
     - Users may comment on each others tasks and mark them as 'Done'
-
