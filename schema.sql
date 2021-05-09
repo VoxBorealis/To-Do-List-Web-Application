@@ -52,5 +52,4 @@ CREATE TABLE project_task_comments (
     comment TEXT,
     made_at TIMESTAMP,
     visible BOOLEAN,
-    creator_username TEXT
 );

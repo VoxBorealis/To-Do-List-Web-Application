@@ -1,71 +1,68 @@
-<!doctype html>
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<title>What To Do!?</title>
-<div class="container">
-  <div class="row">
-    <div class="col-8">
-      <h1> <a href="/">To-Do-List</a></h1>
-        A quick and easy way to keep track of your tasks.
-      <p>
-        <p>
-        <h3>Register</h3>
-        <form action="" method="POST">
-            {{ form.csrf_token }}
-            <div class="form-group">
-              {{ form.username.label(class='form-control-label') }}
+{% extends "layout.html" %}
+{% block content %}
+<hr>
+<p>
+    <p>
+    <h3>Register</h3>
+    <form action="" method="POST">
+        {{ form.csrf_token }}
+        <div class="form-group">
+          {{ form.username.label(class='form-control-label') }}
 
-                {% if form.username.errors %}
-                {{ form.username(class='form-control form-control is-invalid') }}
-                <div class='invalid-feedback'>
-                    {% for error in form.username.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
-                </div>
-                {% else %}
-                {{ form.username(class='form-control form-control-') }}
-                {% endif %}
+            {% if form.username.errors %}
+            {{ form.username(class='form-control form-control is-invalid') }}
+            <div class='invalid-feedback'>
+                {% for error in form.username.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
             </div>
-            <div class="form-group">
-              {{ form.password.label(class='form-control-label') }}
+            {% else %}
+            {{ form.username(class='form-control form-control-') }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+          {{ form.password.label(class='form-control-label') }}
 
-                {% if form.password.errors %}
-                {{ form.password(class='form-control form-control- is-invalid') }}
-                <div class='invalid-feedback'>
-                    {% for error in form.password.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
-                </div>
-                {% else %}
-                {{ form.password(class='form-control form-control') }}
-                {% endif %}
+            {% if form.password.errors %}
+            {{ form.password(class='form-control form-control- is-invalid') }}
+            <div class='invalid-feedback'>
+                {% for error in form.password.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
             </div>
-            <div class="form-group">
-              {{ form.password_confirm.label(class='form-control-label') }}
+            {% else %}
+            {{ form.password(class='form-control form-control') }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+          {{ form.password_confirm.label(class='form-control-label') }}
 
-                {% if form.password_confirm.errors %}
-                {{ form.password_confirm(class='form-control form-control is-invalid') }}
-                <div class='invalid-feedback'>
-                    {% for error in form.password_confirm.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
-                </div>
-                {% else %}
-                {{ form.password_confirm(class='form-control form-control') }}
-                {% endif %}
+            {% if form.password_confirm.errors %}
+            {{ form.password_confirm(class='form-control form-control is-invalid') }}
+            <div class='invalid-feedback'>
+                {% for error in form.password_confirm.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
             </div>
-            {{ form.submit(class="btn btn-primary") }}
+            {% else %}
+            {{ form.password_confirm(class='form-control form-control') }}
+            {% endif %}
+        </div>
+        {{ form.submit(class="btn btn-primary") }}
 
-            <hr>
-            <medium class="text-muted">
-                Already have an account? <a href="/">Log In</a>
-            </medium>
-          </form>
-    </div>
-    <div class="col-4">
-      <h2>Did you know?</h2>
-      <p>
-        Vestibulum at consectetur mi, vel ultrices leo. Nam rhoncus viverra velit, sed pretium tortor ultricies a. In ullamcorper metus sem, vel porttitor erat volutpat euismod. Nulla facilisi. Nam facilisis, odio quis condimentum fringilla, risus eros vehicula leo, a malesuada odio ante sit amet mauris. Praesent accumsan massa ut lorem pulvinar, non luctus erat laoreet. Etiam pulvinar libero at sapien lacinia, et vulputate nunc semper. Maecenas lobortis diam eu neque ultricies tempor. Vivamus efficitur eros ut feugiat fermentum. Quisque orci magna, commodo eget erat eu, tincidunt hendrerit nisl. 
-    </div>
-  </div>
+        <hr>
+        <medium class="text-muted">
+            Already have an account? <a href="/">Log In</a>
+        </medium>
+      </form>
 </div>
+<div class="col-4">
+    <h2>To-Do-List</h2>
+    <p>
+      An app made for keeping track of your tasks! Using To-Do-List may increase your productivity.
+      Start by creating a personal task to learn the basics. You can also keep track of your groups or friends
+      tasks by creating a Project. Tasks you create inside the project are shared between you and your group.
+      Everyone can create tasks, comment or mark tasks as done inside the project!
+    </p>  
+</div>
+{% endblock %}

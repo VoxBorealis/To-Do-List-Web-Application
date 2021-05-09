@@ -2,22 +2,21 @@
 
 [Link to Heroku](https://to-do-list-web-application.herokuapp.com/)
 
+An app made for keeping track of your tasks!
+
 Features:
 
-- The user can create a new account and log in/out.
-- The user can create a new task for themselves.
-- The user can set a priority level for their tasks.
-- The tasks will be ordered based on their priority.
-- The user may mark a task as 'done', therefore moving it to a 'Completed Tasks' list
-- The user can comment on their tasks (Description)
+* Personal tasks
+    - The user can create a new account and log in/out.
+    - The user can create a new task for themselves.
+    - The user can set a priority level for their tasks.
+    - The tasks will be ordered based on their priority.
+    - The user may mark a task as 'done', therefore moving it to a 'Completed Tasks' list
+    - The user can comment on their tasks (Description)
 
-These are the basic features that I've implemented so far.
-I'm not sure if I'm yet satisfied with the scope of the project,
-so more features will have to be added.
-
-Some ideas for more features:
-
-- Users can befriend each other, allowing them to see each others tasks
-- User roles..?(Although I'm not sure how useful those would be in this app)
-- Group tasks
+* Projects
+    - Users may create a group task list called a project
+    - Users can invite people to the project
+    - Users can create tasks inside the project that everyone involved can interact with
+    - Users may comment on each others tasks and mark them as 'Done'
 

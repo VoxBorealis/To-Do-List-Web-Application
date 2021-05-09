@@ -36,7 +36,7 @@ You are currently working on,
             <h5 class="mb-1">{{ task[1] }}</h5>
             <small>{{ task[3] }}</small>
           </div>
-          <p class="mb-1">Click to see the comments!{{ task[4] }}</p>
+          <p class="mb-1">Made by - {{ task[4] }}</p>
           <small>Prio: {{ task[2] }}</small>
         </a>
       </div>
@@ -54,7 +54,7 @@ You are currently working on,
   <hr>
   <ul>
     {% for member in members %}
-      <p> {{ member }}</p>
+      <p> {{ member[0] }}</p>
     {% endfor %}
   </ul>
 
@@ -88,7 +88,6 @@ You are currently working on,
       <hr>
     <a href="https://github.com/VoxBorealis/To-Do-List-Web-Application">GitHub</a>
     <hr>
-  <hr>
 
 <form action="/new_project_task" method="POST">
     <input type="hidden" name="id" value="{{ project[0] }}">

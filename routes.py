@@ -1,15 +1,14 @@
 from app import app
 from flask import redirect, render_template, request, session, url_for
-import users
-import tasks
-import proj
+import users, tasks, proj
 from forms import RegisterForm, LoginForm, TaskForm, TaskComment, ProjectForm, InviteForm
 
 @app.route("/", methods=["GET","POST"])
 def index():
     form = LoginForm()
     task_form = TaskForm()
-    return render_template("index.html", tasks=tasks.get_my_tasks_with_comment(users.user_id()), form = form, task_form = task_form)
+    return render_template("index.html", tasks=tasks.get_my_tasks_with_comment(users.user_id()),
+                             form = form, task_form = task_form)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -21,7 +20,6 @@ def login():
             return redirect("/")
         else:
             return render_template("index.html",form = form, error ="Invalid username or password")
-            #return render_template("error.html",message="Invalid username or password.")
     return render_template("index.html", form = form)
 
 @app.route("/logout")
@@ -146,7 +144,7 @@ def project_task(project_id, id):
             return render_template("project_task.html", task = task, project_id = project_id, id = id,
                                      form = form, project_name = project_name, comments = comments)
         else:
-            proj.task_done(id, users.user_id())
+            proj.task_done(id, users.user_id(), project_id)
             return redirect("/projects/" + str(project_id))
 
 @app.route("/new_project_task", methods=["GET", "POST"])
@@ -156,7 +154,8 @@ def new_project_task():
     if request.method == "POST":
         try:
             done = request.form["done"]
-            proj.delete_project(users.user_id(), id)
+            if proj.delete_project(users.user_id(), id) == False:
+                return render_template("error.html", message="Invalid rights!")
             return redirect("/projects")
         except:
             if form.validate_on_submit():
@@ -168,4 +167,3 @@ def new_project_task():
                     return render_template("error.html", message="There was an error while creating a project task")
         
     return render_template("project.html", project = proj.get_project_info(id), form = form)
-
