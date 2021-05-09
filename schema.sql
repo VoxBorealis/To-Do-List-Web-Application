@@ -51,5 +51,5 @@ CREATE TABLE project_task_comments (
     creator_id INTEGER REFERENCES users,
     comment TEXT,
     made_at TIMESTAMP,
-    visible BOOLEAN,
+    visible BOOLEAN
 );
