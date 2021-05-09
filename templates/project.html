@@ -88,7 +88,7 @@ You are currently working on,
       <hr>
     <a href="https://github.com/VoxBorealis/To-Do-List-Web-Application">GitHub</a>
     <hr>
-
+<p style="color: tomato;">{{ delete_error }}</p>
 <form action="/new_project_task" method="POST">
     <input type="hidden" name="id" value="{{ project[0] }}">
     <input type="hidden" name="done" value="yes">
@@ -97,7 +97,6 @@ You are currently working on,
 <medium class="text-muted">
     Only the owner can delete this project.
 </medium>
-
 </div>
 </div>
 </div>

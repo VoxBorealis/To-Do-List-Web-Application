@@ -41,7 +41,7 @@ def new_project_member(project_id, user_id):
 
 def get_project_members(project_id):
     sql = "SELECT U.username FROM project_members AS M, users AS U WHERE M.project_id = :project_id " \
-           "AND M.user_id = U.id"
+           "AND M.user_id = U.id ORDER BY M.id"
     results = db.session.execute(sql, {"project_id":project_id}).fetchall()
     return results
 

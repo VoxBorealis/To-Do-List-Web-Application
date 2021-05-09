@@ -155,7 +155,13 @@ def new_project_task():
         try:
             done = request.form["done"]
             if proj.delete_project(users.user_id(), id) == False:
-                return render_template("error.html", message="Invalid rights!")
+                tasks = proj.get_my_project_tasks(users.user_id(), id)
+                invite_form = InviteForm()
+                members = proj.get_project_members(id)
+                #return render_template("error.html", message="Invalid rights!")
+                return render_template("project.html", project = proj.get_project_info(id), form = form,
+                                invite_form = invite_form, tasks = tasks, id = id, members = members,
+                                delete_error = "You are not the creator!")
             return redirect("/projects")
         except:
             if form.validate_on_submit():
