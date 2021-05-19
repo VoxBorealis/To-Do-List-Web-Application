@@ -1,5 +1,7 @@
 # To-Do-List-Web-Application
 
+Made by using: Python, Flask, SQL, HTML
+
 [Link to Heroku](https://to-do-list-web-app-py.herokuapp.com/)
 
 An app made for keeping track of your tasks!
