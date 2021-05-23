@@ -1,6 +1,6 @@
 # To-Do-List-Web-Application
 
-Made by using: Python, Flask, SQL, HTML
+Created with: Python, Flask, SQL, HTML
 
 [Link to Heroku](https://to-do-list-web-app-py.herokuapp.com/)
 
@@ -21,3 +21,5 @@ Features:
     - Users can invite people to the project
     - Users can create tasks inside the project that everyone involved can interact with
     - Users may comment on each others tasks and mark them as 'Done'
+
+![Screenshot](./ToDoWebAppScreenshot.png)
