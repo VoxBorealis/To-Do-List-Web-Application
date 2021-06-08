@@ -1,6 +1,6 @@
 # To-Do-List-Web-Application
 
-Created with: Python, Flask, SQL, HTML
+Created with: Python, Flask, PostgreSQL, HTML
 
 [Link to Heroku](https://to-do-list-web-app-py.herokuapp.com/)
 
